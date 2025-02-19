@@ -1,7 +1,7 @@
 # E<sup>2</sup>Net: Resource-Efficient Continual Learning with Elastic Expansion Network
 
 ## Introduction
-This is the training and evaluation code for our work "E<sup>2</sup>Net: Resource-Efficient Continual Learning with Elastic Expansion Network".
+This the training and evaluation code for our work "E<sup>2</sup>Net: Resource-Efficient Continual Learning with Elastic Expansion Network".
 
 
 ## Setup
