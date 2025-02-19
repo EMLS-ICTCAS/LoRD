@@ -1,0 +1,8 @@
+.idea/
+**/__pycache__
+datasets/CIFAR10
+datasets/CIFAR100
+datasets/MNIST
+datasets/TINYIMG
+datasets/CIFAR10
+result/json/*
