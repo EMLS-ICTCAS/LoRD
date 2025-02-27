@@ -2,7 +2,9 @@
 
 # Define an array of commands
 commands=(
-  "CUDA_VISIBLE_DEVICES=1 python main.py --dataset seq-cifar10 --model e2n --buffer_size 200 --load_best_args"
+  "python main.py --dataset seq-cifar10 --model lord --buffer_size 500 --load_best_args"
+  "python main.py --dataset seq-cifar100 --model lord --buffer_size 500 --load_best_args"
+  "python main.py --dataset seq-tinyimg --model lord --buffer_size 500 --load_best_args"
 
 
 )

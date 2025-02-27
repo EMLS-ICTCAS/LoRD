@@ -13,8 +13,7 @@ import random
 import math
 import numpy as np
 def get_parser() -> ArgumentParser:
-    parser = ArgumentParser(description='Continual learning via'
-                                        ' Dark Experience Replay++.')
+    parser = ArgumentParser()
     add_management_args(parser)
     add_experiment_args(parser)
     add_rehearsal_args(parser)
@@ -25,12 +24,12 @@ def get_parser() -> ArgumentParser:
     return parser
 
 
-class loRD(ContinualModel):
-    NAME = 'loRD'
+class lord(ContinualModel):
+    NAME = 'lord'
     COMPATIBILITY = ['class-il', 'domain-il', 'task-il', 'general-continual']
 
     def __init__(self, backbone, loss, args, transform):
-        super(loRD, self).__init__(backbone, loss, args, transform)
+        super(lord, self).__init__(backbone, loss, args, transform)
 
         self.buffer = Buffer(self.args.buffer_size, self.device)
         self.current_task = 0
@@ -94,56 +93,6 @@ class loRD(ContinualModel):
         # print(lo)
 
         return loss.item()
-
-    # def observe(self, inputs, labels, not_aug_inputs, sub_net_dict=None, config_list=None):
-    #
-    #     present = labels.unique().long()
-    #     self.seen_so_far = torch.cat([self.seen_so_far, present]).unique()
-    #     self.net.set_max_net()
-    #
-    #     logits = self.net(inputs)
-    #     mask = torch.zeros_like(logits)
-    #     mask[:, present] = 1
-    #
-    #     self.opt.zero_grad()
-    #     if self.seen_so_far.max() < (self.num_classes - 1):
-    #         mask[:, self.seen_so_far.max():] = 1
-    #
-    #     if self.current_task > 0:
-    #         logits = logits.masked_fill(mask == 0, torch.finfo(logits.dtype).min)
-    #
-    #     loss = self.loss(logits, labels)
-    #     loss_re = torch.tensor(0.)
-    #     occupy = 0
-    #
-    #     if self.current_task > 0:
-    #         # sample from buffer
-    #         buf_inputs, buf_labels = self.buffer.get_data(
-    #             self.args.minibatch_size, transform=self.transform)
-    #         loss_re = self.loss(self.net(buf_inputs), buf_labels)
-    #
-    #     loss += loss_re
-    #     if sub_net_dict:
-    #         # self.net.re_organize_middle_weights()
-    #         index = random.choice(list(range(0, len(sub_net_dict["config"]))))
-    #         sub_config = sub_net_dict["config"][index]
-    #         subnet = sub_net_dict["net"][index]
-    #         occupy = sub_net_dict["occupy"][index]
-    #         self.net.set_active_subnet(**sub_config)
-    #         sub_logits=subnet(inputs)
-    #         sub_outputs=self.net(inputs)
-    #         sub_loss = F.mse_loss(sub_outputs, sub_logits)
-    #         loss += 0.02*sub_loss
-    #
-    #     self.net.set_max_net()
-    #     loss.backward()
-    #     self.opt.step()
-    #     ran = random.random()
-    #     if ran<(math.exp(-occupy*0.75)):
-    #         self.buffer.add_data(examples=not_aug_inputs,
-    #                          labels=labels)
-    #
-    #     return loss.item()
 
 
     def end_task(self, dataset) -> None:

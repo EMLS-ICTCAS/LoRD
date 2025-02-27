@@ -69,7 +69,7 @@ def main(args = None):
         setattr(args, 'batch_size', 1)
 
     dataset = get_dataset(args)
-    if args.model == 'e2n':
+    if args.model == 'lord':
         backbone = get_net(args)
     else:
         backbone = dataset.get_backbone()

@@ -484,10 +484,10 @@ if __name__ == "__main__":
     # range_list=list(range(0,91))
     # range_list = [x/10 for x in range_list]
     # range_list.append(1)
-    # net = OFAResNets(n_classes=10, depth_list=[1], expand_ratio_list=[1, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05],
-    #                  width_mult_list=[1, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05])
-    net = OFAResNets(n_classes=10, depth_list=[1], expand_ratio_list=[1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1],
-                     width_mult_list=[1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1])
+    net = OFAResNets(n_classes=10, depth_list=[1], expand_ratio_list=[1, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05],
+                     width_mult_list=[1, 0.9, 0.85, 0.8, 0.75, 0.7, 0.65, 0.6, 0.55, 0.5, 0.45, 0.4, 0.35, 0.3, 0.25, 0.2, 0.15, 0.1, 0.05])
+    # net = OFAResNets(n_classes=10, depth_list=[1], expand_ratio_list=[1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1],
+    #                  width_mult_list=[1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1])
     # net = OFAResNets(n_classes=10, depth_list=[1], expand_ratio_list=[1, 0.8, 0.6, 0.4, 0.2],
     #                  width_mult_list=[1, 0.8, 0.6, 0.4, 0.2])
     total_space = get_parameter_number(net)["Trainable"]
@@ -497,7 +497,7 @@ if __name__ == "__main__":
     net.set_active_subnet(d=[1, 1, 1, 1], e=[1, 0.9, 0.9, 1, 0.9, 1, 0.9, 0.9], w=[9, 9, 9, 9])
     subnet = net.get_active_subnet()
     print(subnet)
-    for t in range(0,5):
+    for t in range(0,20):
         # z = torch.randn((1, 3, 32, 32))
         # max_output = net(z)
         # sub_loss_list = []
@@ -509,7 +509,9 @@ if __name__ == "__main__":
         # super_net_list = []
         # super_space_list = []
         # model.net.re_organize_middle_weights()
-        net.set_stage(t,r=4,task=5)
+        # net.set_stage(t,r=4,task=5)
+        # net.set_stage(t, r=3.5, task=10)
+        net.set_stage(t, r=1, task=20)
         net.set_active_subnet(maxnet=True)
         subnet = net.get_active_subnet()
         print(subnet)

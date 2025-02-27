@@ -1,7 +1,7 @@
-# E<sup>2</sup>Net: Resource-Efficient Continual Learning with Elastic Expansion Network
+# Low-redundancy Distillation for Continual Learning
 
 ## Introduction
-This the training and evaluation code for our work "E<sup>2</sup>Net: Resource-Efficient Continual Learning with Elastic Expansion Network".
+This the training and evaluation code for our work "Low-redundancy Distillation for Continual Learning".
 
 
 ## Setup
@@ -14,18 +14,14 @@ This the training and evaluation code for our work "E<sup>2</sup>Net: Resource-E
 
  Examples:
 
-    python main.py --dataset seq-cifar10 --model e2n --buffer_size 500 --load_best_args
+    python main.py --dataset seq-cifar10 --model lord --buffer_size 500 --load_best_args
     
-    python main.py --dataset seq-tinyimg --model e2n --buffer_size 500 --load_best_args
+    python main.py --dataset seq-tinyimg --model lord --buffer_size 500 --load_best_args
    
-    python main.py --dataset seq-cifar100 --model e2n --buffer_size 500 --load_best_args
+    python main.py --dataset seq-cifar100 --model lord --buffer_size 500 --load_best_args
     
  
 
-## Requirements
-
-- torch==1.12.1
-
-- torchvision==0.13.1
-
-- tensorflow 2.11.0
+## Acknowledgements :
+We extended the original repo [DER++](https://papers.nips.cc/paper/2020/hash/b704ea2c39778f07c617f6b7ce480e9e-Abstract.html) with our method.
+We extend our gratitude to the authors for their support and for providing the research community with the Mammoth framework.
